@@ -1,0 +1,46 @@
+JOBPILOT AI COMPLETE UPGRADE - START HERE
+
+IMPORTANT: Do not overwrite your current project. Install this upgrade into a NEW folder first.
+
+1) Stop the old Streamlit app and scheduler with Ctrl+C in their terminal windows.
+
+2) Back up your original database in CMD:
+   copy C:\JobPilotAI\jobpilot_ai\data\jobpilot.db C:\JobPilotAI\jobpilot_ai\data\jobpilot_before_upgrade.db
+
+3) Extract JobPilot_AI_Complete_Upgrade.zip into:
+   C:\JobPilotAI\jobpilot_ai_upgrade
+
+4) Copy your existing master resume:
+   copy C:\JobPilotAI\jobpilot_ai\master_resume.md C:\JobPilotAI\jobpilot_ai_upgrade\master_resume.md
+
+5) Copy your existing database into the new project's data folder:
+   mkdir C:\JobPilotAI\jobpilot_ai_upgrade\data
+   copy C:\JobPilotAI\jobpilot_ai\data\jobpilot.db C:\JobPilotAI\jobpilot_ai_upgrade\data\jobpilot.db
+
+6) Optional: copy your existing .env into the new folder to retain API/email settings.
+   copy C:\JobPilotAI\jobpilot_ai\.env C:\JobPilotAI\jobpilot_ai_upgrade\.env
+   Never upload or share .env.
+
+7) Install dependencies using your existing virtual environment:
+   C:\JobPilotAI\.venv\Scripts\python.exe -m pip install -r C:\JobPilotAI\jobpilot_ai_upgrade\requirements.txt
+
+8) Run syntax check:
+   cd /d C:\JobPilotAI\jobpilot_ai_upgrade
+   C:\JobPilotAI\.venv\Scripts\python.exe -m compileall -q .
+
+9) Verify database counts and additive migrations:
+   C:\JobPilotAI\.venv\Scripts\python.exe verify_database.py
+   Compare jobs/applications/runs with your old database. Expected based on the schema you shared: 319 / 3 / 6.
+
+10) Optional: classify work arrangements using explicit text evidence only:
+    C:\JobPilotAI\.venv\Scripts\python.exe classify_work_modes.py
+
+11) Start dashboard:
+    C:\JobPilotAI\.venv\Scripts\python.exe -m streamlit run app.py
+
+12) In the dashboard sidebar, upload your current PDF/DOCX/MD/TXT resume and click Analyze uploaded resume.
+    Review the detected skills and project list. Resume extraction can make mistakes; correct your source resume if needed.
+
+13) Only after the new copy is working and counts match, decide whether to use it as your main project. Keep the old folder and backup until then.
+
+SAFETY: This version never submits employer applications automatically. It creates resumes and a PendingApproval queue; you open the employer site, complete the form, and submit manually. Never put passwords or OTPs in this app.
